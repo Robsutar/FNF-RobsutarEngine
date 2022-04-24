@@ -1,6 +1,7 @@
 package com.robsutar.Engine.Helpers;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public final class EngineVisuals {
@@ -28,5 +29,16 @@ public final class EngineVisuals {
     public static Color randomColor(){
         Random rnd = new Random();
         return new Color(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255));
+    }
+    public static BufferedImage resizeImage(BufferedImage image,int targetWidth,int targetHeight){
+        BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resizedImage.createGraphics();
+        RenderingHints rh = new RenderingHints(
+                RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2d.setRenderingHints(rh);
+        g2d.drawImage(image, 0, 0, targetWidth, targetHeight, null);
+        g2d.dispose();
+        return resizedImage;
     }
 }

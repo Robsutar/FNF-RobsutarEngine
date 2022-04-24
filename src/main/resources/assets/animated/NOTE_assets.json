@@ -1,0 +1,127 @@
+{
+	"xml": "NOTE_assets.xml",
+	"image": "NOTE_assets.png",
+	"animations":[
+		{
+			"name": "arrowDOWN",
+			"offsets":[-5,0],
+			"command": "downIdle",
+			"loop" : false
+		},{
+			"name": "arrowLEFT",
+			"offsets":[-2,-3],
+			"command": "leftIdle",
+			"loop" : false
+		},{
+			"name": "arrowRIGHT",
+			"offsets":[-2,1],
+			"command": "rightIdle",
+			"loop" : false
+		},{
+			"name": "arrowUP",
+			"offsets":[-2,-3],
+			"command": "upIdle",
+			"loop" : false
+		},{
+			"name": "blue hold end",
+			"offsets":[0,0],
+			"command": "blueHoldEnd",
+			"loop" : false
+		},{
+			"name": "blue hold piece",
+			"offsets":[0,0],
+			"command": "blueHoldPiece",
+			"loop": true
+		},{
+			"name": "green hold end",
+			"offsets":[0,0],
+			"command": "greenHoldEnd",
+			"loop" : false
+		},{
+			"name": "green hold piece",
+			"offsets":[0,0],
+			"command": "greenHoldPiece",
+			"loop": true
+		},{
+			"name": "red hold end",
+			"offsets":[0,0],
+			"command": "redHoldEnd",
+			"loop" : false
+		},{
+			"name": "red hold piece",
+			"offsets":[0,0],
+			"command": "redHoldPiece",
+			"loop": true
+		},{
+			"name": "purple hold end",
+			"offsets":[0,0],
+			"command": "purpleHoldEnd",
+			"loop" : false
+		},{
+			"name": "purple hold piece",
+			"offsets":[0,0],
+			"command": "purpleHoldPiece",
+			"loop": true
+		},{
+			"name": "left confirm",
+			"offsets":[0,0],
+			"command": "leftConfirm",
+			"loop" : false
+		},{
+			"name": "left press",
+			"offsets":[0,0],
+			"command": "leftPress",
+			"loop" : false
+		},{
+			"name": "right confirm",
+			"offsets":[0,0],
+			"command": "rightConfirm",
+			"loop" : false
+		},{
+			"name": "right press",
+			"offsets":[0,0],
+			"command": "rightPress",
+			"loop" : false
+		},{
+			"name": "down confirm",
+			"offsets":[0,0],
+			"command": "downConfirm",
+			"loop" : false
+		},{
+			"name": "down press",
+			"offsets":[0,0],
+			"command": "downPress",
+			"loop" : false
+		},{
+			"name": "up confirm",
+			"offsets":[0,0],
+			"command": "upConfirm",
+			"loop" : false
+		},{
+			"name": "up press",
+			"offsets":[0,0],
+			"command": "upPress",
+			"loop" : false
+		},{
+			"name": "purple",
+			"offsets":[0,0],
+			"command": "leftNormal",
+			"loop" : false
+		},{
+			"name": "red",
+			"offsets":[0,0],
+			"command": "rightNormal",
+			"loop" : false
+		},{
+			"name": "green",
+			"offsets":[0,0],
+			"command": "upNormal",
+			"loop" : false
+		},{
+			"name": "blue",
+			"offsets":[0,0],
+			"command": "downNormal",
+			"loop" : false
+		}
+	]
+}

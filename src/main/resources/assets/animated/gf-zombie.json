@@ -1,0 +1,33 @@
+{
+  "image": "gf-zombie.png",
+  "xml": "gf-zombie.xml",
+  "animations": [
+    {
+      "offsets": [
+        0,
+        0
+      ],
+      "loop": true,
+      "name": "GF Cheering",
+      "command": "cheering"
+    },
+    {
+      "offsets": [
+        0,
+        20
+      ],
+      "loop": true,
+      "name": "GF Dancing Beat",
+      "command": "moveIdle"
+    },
+    {
+      "offsets": [
+        0,
+        -5
+      ],
+      "loop": true,
+      "name": "gf sad",
+      "command": "sad"
+    }
+  ]
+}

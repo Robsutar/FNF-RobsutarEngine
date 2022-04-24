@@ -29,17 +29,4 @@ public final class GraphicsManipulator {
         g2d.setTransform(standardTransform);
         setOpacity(g2d,1f);
     }
-    public static Rectangle makeRectPositive(Rectangle rect){
-        int rX=rect.x,rY=rect.y,rW=rect.width,rH=rect.height;
-
-        if (rW<0){
-            rX += rW;
-            rW = -rW;
-        }
-        if (rH<0){
-            rY += rH;
-            rH = -rH;
-        }
-        return new Rectangle(rX,rY,rW,rH);
-    }
 }

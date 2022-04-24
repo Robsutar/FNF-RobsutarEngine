@@ -1,6 +1,7 @@
 package com.robsutar.Engine.Audio;
 
 import com.robsutar.Engine.Handler;
+import com.robsutar.Engine.Helpers.SystemPrinter;
 import com.robsutar.Engine.Threads.PausableThread;
 
 import javax.sound.sampled.Clip;
@@ -12,18 +13,13 @@ import java.util.concurrent.TimeUnit;
 public class Music {
     Clip audio;
 
-    private float bpm = 190;
-    long lastAge = 0;
+    private double bpm = 60;
 
     public int compass = 4;
-    public int bpmDivisor = compass*4;
-
-    private boolean running = false;
-
-    private final Thread thread;
 
     public Music(Clip wav){
         audio = wav;
+        /*
         thread = new Thread(()->{
             while (running){
                 if (audio.isRunning()){
@@ -34,6 +30,8 @@ public class Music {
                 }
             }
         });
+
+         */
     }
 
     public void play(){
@@ -49,33 +47,32 @@ public class Music {
         else {play();}
     }
 
-    public void setBpm(float b){
+    public void setBpm(double b){
         bpm = b;
-
-        lastAge = getAge();
     }
 
-    public float getBpm(){
+    public double getBpm(){
         return bpm;
     }
 
-    private void bpmTick(){
-        Handler.bpmTick(lastAge);
-    }
-
-    public long getAge(){
-        return lastAge;
-    }
-
+    /*
     private long getMusicAge(){
         return (long) (bpm*(audio.getMicrosecondPosition()*Math.pow(10,-6d))/(60d/bpmDivisor));
     }
 
-    public void initialize(){
-        running = true;
-        thread.start();
+     */
+
+    public boolean isActive(){return audio.isActive();}
+
+    public long getMusicMaxAge(){
+        return audio.getMicrosecondLength();
     }
-    public void finish(){
-        running = false;
+
+    public long getPosition() {
+        return audio.getMicrosecondPosition();
+    }
+
+    public void setPosition(long i) {
+        audio.setMicrosecondPosition(i);
     }
 }

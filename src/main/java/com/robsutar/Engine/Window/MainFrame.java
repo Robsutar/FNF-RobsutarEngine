@@ -2,11 +2,19 @@ package com.robsutar.Engine.Window;
 
 import com.robsutar.Engine.Handler;
 import com.robsutar.Engine.Helpers.EngineConfigs;
+import com.robsutar.Engine.Helpers.FileManager;
+import com.robsutar.Engine.Helpers.KeyManager;
+import com.robsutar.Engine.Helpers.SystemPrinter;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class MainFrame extends JFrame implements KeyListener {
 
@@ -17,20 +25,28 @@ public class MainFrame extends JFrame implements KeyListener {
         //configs
         Dimension dim = new Dimension(1280,720);
 
-        setTitle("Robsutar com.robsutar.Engine");
+        setTitle("FNF Robsutar Engine");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setFocusable(true);
 
         setPreferredSize(dim);
+        setFocusTraversalKeysEnabled(false);
 
         setVisible(true);
         pack();
         setLocationRelativeTo(null);
 
-
         //threads
         addKeyListener(this);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                super.windowDeactivated(e);
+                KeyManager.clearKeyPressHistory();
+            }
+        });
 
         tickThread = new Thread(() ->{
             long now;

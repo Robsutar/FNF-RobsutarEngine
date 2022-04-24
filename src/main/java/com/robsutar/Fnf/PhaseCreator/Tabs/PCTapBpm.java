@@ -2,6 +2,7 @@ package com.robsutar.Fnf.PhaseCreator.Tabs;
 
 import com.robsutar.Engine.Helpers.EngineVisuals;
 import com.robsutar.Engine.Helpers.GraphicsManipulator;
+import com.robsutar.Engine.Helpers.JComponentHelpers;
 import com.robsutar.Fnf.PhaseCreator.PCMainPanel;
 import com.robsutar.Fnf.PhaseCreator.PCTab;
 
@@ -24,11 +25,11 @@ public class PCTapBpm extends PCTab {
 
     private List<Long> clickList = new ArrayList<>();
 
-    private float bpm;
+    private double bpm;
 
     public PCTapBpm(PCMainPanel h) {
         super(h);
-        bpm = h.music.getBpm();
+        bpm = getMusic().getBpm();
 
         center = new CenterPanel();
         left = new LeftPanel();
@@ -69,12 +70,12 @@ public class PCTapBpm extends PCTab {
         }
     }
 
-    private void setBpm(float f){
+    private void setBpm(double f){
         this.bpm = f;
-        handler.music.setBpm(bpm);
+        getMusic().setBpm(bpm);
     }
 
-    private class CenterPanel extends JPanel {
+    public class CenterPanel extends JPanel {
 
         JButton tapButton, resetButton;
         JTextField bpmTextField;
@@ -83,7 +84,7 @@ public class PCTapBpm extends PCTab {
         private CenterPanel() {
             setLayout(new GridBagLayout());
             setBackground(handler.color2);
-            bpm = handler.music.getBpm();
+            bpm = getMusic().getBpm();
 
             lights = new Lights(new Dimension(300, 50));
 
@@ -104,7 +105,7 @@ public class PCTapBpm extends PCTab {
             bpmTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
             bpmTextField.setHorizontalAlignment(JTextField.HORIZONTAL);
             PlainDocument doc = (PlainDocument) bpmTextField.getDocument();
-            doc.setDocumentFilter(new ParseFloatFilter());
+            doc.setDocumentFilter(new JComponentHelpers.ParseFloatFilter());
 
             tapButton.addActionListener(e -> {
                 onTap();
@@ -220,7 +221,7 @@ public class PCTapBpm extends PCTab {
                 setPreferredSize(dim);
                 setOpaque(false);
 
-                for (int i = 0; i < handler.music.compass;i++){
+                for (int i = 0; i < getMusic().compass;i++){
                     lights.add(new SingularLight());
                 }
             }
@@ -235,29 +236,30 @@ public class PCTapBpm extends PCTab {
                 int x = getWidth()/2;
                 int y = 0;
                 int x1 = x - width*(lights.size()/2);
-                for (int i = 0; i <lights.size();i++){
-                    SingularLight l = lights.get(i);
-                    l.render(g2d,x1,y,width,height);
-                    x1+=width;
-                    GraphicsManipulator.resetGraphics(g2d,at);
+                for (SingularLight l : lights) {
+                    l.render(g2d, x1, y, width, height);
+                    x1 += width;
+                    GraphicsManipulator.resetGraphics(g2d, at);
                 }
             }
 
             long lastAge = 0;
 
             private void bpmTick(long age){
-                System.out.println(age);
+                /*
                 if (age!=lastAge+1){
                     System.out.println(age+" <> "+lastAge);
                 }
                 lastAge = age;
-                if (age%handler.music.bpmDivisor==0) {
+                if (age%getMusic().bpmDivisor==0) {
                     lights.get(index).highlight();
                     index++;
                     if (index>=4){
                         index = 0;
                     }
                 }
+
+                 */
             }
 
             private void tick(){
@@ -284,45 +286,6 @@ public class PCTapBpm extends PCTab {
                     GraphicsManipulator.setOpacity(g2d,opacity);
                     g2d.setColor(c);
                     g2d.fillRect(x,y,width,height);
-                }
-            }
-        }
-
-        private class ParseFloatFilter extends DocumentFilter {
-            @Override
-            public void insertString(FilterBypass fb, int offset, String string,
-                                     AttributeSet attr) throws BadLocationException {
-
-                Document doc = fb.getDocument();
-                StringBuilder sb = new StringBuilder();
-                sb.append(doc.getText(0, doc.getLength()));
-                sb.insert(offset, string);
-
-                if(test(sb.toString())) {
-                    super.insertString(fb, offset, string, attr);
-                }
-            }
-
-            private boolean test(String text) {
-                try {
-                    Float.parseFloat(text);
-                    return true;
-                } catch (NumberFormatException e) {
-                    return false;
-                }
-            }
-
-            @Override
-            public void replace(FilterBypass fb, int offset, int length, String text,
-                                AttributeSet attrs) throws BadLocationException {
-
-                Document doc = fb.getDocument();
-                StringBuilder sb = new StringBuilder();
-                sb.append(doc.getText(0, doc.getLength()));
-                sb.replace(offset, offset + length, text);
-
-                if(test(sb.toString())) {
-                    super.replace(fb, offset, length, text, attrs);
                 }
             }
         }

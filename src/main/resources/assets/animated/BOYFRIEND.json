@@ -1,0 +1,52 @@
+{
+	"xml": "BOYFRIEND.xml",
+	"image": "BOYFRIEND.png",
+	"animations":[
+		{
+			"name": "BF HEY!!",
+			"offsets":[0,0],
+			"command": "hey",
+			"loop": false
+		},{
+			"name": "BF NOTE DOWN",
+			"offsets":[0,0],
+			"command": "moveDown",
+			"loop": false
+		},{
+			"name": "BF NOTE LEFT",
+			"offsets":[0,0],
+			"command": "moveLeft",
+			"loop": false
+		},{
+			"name": "BF NOTE RIGHT",
+			"offsets":[0,0],
+			"command": "moveRight",
+			"loop": false
+		},{
+			"name": "BF NOTE UP",
+			"offsets":[0,0],
+			"command": "moveUp",
+			"loop": false
+		},{
+			"name": "BF dies",
+			"offsets":[0,0],
+			"command": "dies",
+			"loop": false
+		},{
+			"name": "BF hit",
+			"offsets":[0,0],
+			"command": "hit",
+			"loop": false
+		},{
+			"name": "BF idle shaking",
+			"offsets":[0,0],
+			"command": "shaking",
+			"loop": true
+		},{
+			"name": "BF idle dance",
+			"offsets":[0,0],
+			"command": "moveIdle",
+			"loop": true
+		}
+	]
+}

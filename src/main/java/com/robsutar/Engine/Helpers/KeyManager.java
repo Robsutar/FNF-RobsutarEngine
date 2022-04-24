@@ -20,4 +20,6 @@ public final class KeyManager{
     public static void keyReleased(KeyEvent e) {
         codes.remove((Integer) e.getKeyCode());
     }
+
+    public static void clearKeyPressHistory(){codes.clear();}
 }

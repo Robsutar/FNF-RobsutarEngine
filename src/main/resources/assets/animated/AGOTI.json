@@ -1,0 +1,36 @@
+{
+	"xml": "AGOTI.xml",
+	"image": "AGOTI.png",
+	"animations":[
+		{
+			"name": "Agoti_Down",
+			"offsets":[1,2],
+			"command": "moveDown",
+			"loop": false
+		},
+		{
+			"name": "Agoti_Idle",
+			"offsets":[1,2],
+			"command": "moveIdle",
+			"loop": true
+		},
+		{
+			"name": "Agoti_Left",
+			"offsets":[1,2],
+			"command": "moveLeft",
+			"loop": false
+		},
+		{
+			"name": "Agoti_Right",
+			"offsets":[1,2],
+			"command": "moveRight",
+			"loop": false
+		},
+		{
+			"name": "Agoti_Up",
+			"offsets":[1,2],
+			"command": "moveUp",
+			"loop": false
+		}
+	]
+}

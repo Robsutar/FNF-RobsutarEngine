@@ -1,0 +1,51 @@
+{
+  "image": "smokinhotbabe.png" ,
+  "xml": "smokinhotbabe.xml" ,
+  "animations": [
+    {
+      "offsets": [
+        0 ,
+        0
+      ] ,
+      "loop": false ,
+      "name": "LuciferSarvDown" ,
+      "command": null
+    } ,
+    {
+      "offsets": [
+        0 ,
+        0
+      ] ,
+      "loop": true ,
+      "name": "LuciferSarvIdle" ,
+      "command": "moveIdle"
+    } ,
+    {
+      "offsets": [
+        0 ,
+        0
+      ] ,
+      "loop": false ,
+      "name": "LuciferSarvLeft" ,
+      "command": null
+    } ,
+    {
+      "offsets": [
+        0 ,
+        0
+      ] ,
+      "loop": false ,
+      "name": "LuciferSarvRight" ,
+      "command": null
+    } ,
+    {
+      "offsets": [
+        0 ,
+        0
+      ] ,
+      "loop": false ,
+      "name": "LuciferSarvUp" ,
+      "command": null
+    }
+  ]
+}

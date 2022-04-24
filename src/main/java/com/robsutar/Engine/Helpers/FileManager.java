@@ -25,10 +25,10 @@ public class FileManager {
 
     public static final String resourcesPath = new File("").getAbsolutePath()+"\\src\\main\\resources\\";
     public static final String mainAssetsPath = resourcesPath+"assets\\";
+    public static final String phasesPath = resourcesPath+"phases\\";
     public static final String imagesPath = mainAssetsPath+"images\\";
     public static final String audioPath = mainAssetsPath+"audio\\";
     public static final String resourcePacksPath =resourcesPath+"resourcePacks\\";
-    public static final String phasesPath=mainAssetsPath+"phases\\";
 
     private static final String standard = "\033[1;37m"+"ORIGINAL - ";
     private static final String resourcePack = "\033[1;33m"+"TEXTURE - ";
@@ -44,7 +44,7 @@ public class FileManager {
         if (assetsTexturePath!=null){
             file = new File(assetsTexturePath+filePath);
             if (file.exists()){
-                SystemPrinter.print(resourcePack+SystemPrinter.loading+file.getPath()+IMAGE);
+                SystemPrinter.print(resourcePack+SystemPrinter.loading+file.getPath());
                 return file;
             }
         }
@@ -94,6 +94,7 @@ public class FileManager {
     }
 
     public static File loadFile(String absoluteFilePath){
+        SystemPrinter.print(SystemPrinter.loading+absoluteFilePath);
         return new File(absoluteFilePath);
     }
 
@@ -131,6 +132,7 @@ public class FileManager {
             AudioInputStream stream = AudioSystem.getAudioInputStream(file);
             clip = AudioSystem.getClip();
             clip.open(stream);
+            stream.close();
         }catch (Exception e){
             SystemPrinter.print(SystemPrinter.failedToLoad+file.getPath()+WAV);
             e.printStackTrace();
@@ -167,14 +169,14 @@ public class FileManager {
         }
     }
 
-    public static File writeFile(File file, File path){
+    public static void writeFile(File file, File path){
 
         File fileFolder = new File(path.getParent());
         if (!fileFolder.exists()){
             fileFolder.mkdirs();
         }
 
-        SystemPrinter.print(SystemPrinter.writing+file.getName()+JSON);
+        SystemPrinter.print(SystemPrinter.writing+file.getName());
 
         try (
                 InputStream in = new BufferedInputStream(
@@ -187,13 +189,11 @@ public class FileManager {
             while ((lengthRead = in.read(buffer)) > 0) {
                 out.write(buffer, 0, lengthRead);
                 out.flush();
-                return new File(path.getPath());
             }
         } catch (IOException fileNotFoundException) {
             SystemPrinter.print(SystemPrinter.failedToWrite+path);
             fileNotFoundException.printStackTrace();
         }
-        return null;
     }
 
     public static void deleteFile(File file) {

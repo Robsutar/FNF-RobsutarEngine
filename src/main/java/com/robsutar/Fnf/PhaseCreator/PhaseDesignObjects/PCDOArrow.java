@@ -14,22 +14,22 @@ public abstract class PCDOArrow extends PCDObject{
     }
     public static final class ArrowUp extends PCDOArrow {
         public ArrowUp() {
-            super(GraphicsManipulator.resizeImage(Assets.ARROW_UP,75,75), 3,Color.green);
+            super(Assets.ARROW_ANIMATION.animationConfigurations.get(9).atlas.get(0).image, 3,Color.green);
         }
     }
     public static final class ArrowDown extends PCDOArrow {
         public ArrowDown() {
-            super(GraphicsManipulator.resizeImage(Assets.ARROW_DOWN,75,75), 2,Color.CYAN);
+            super(Assets.ARROW_ANIMATION.animationConfigurations.get(4).atlas.get(0).image, 2,Color.CYAN);
         }
     }
     public static final class ArrowLeft extends PCDOArrow {
         public ArrowLeft() {
-            super(GraphicsManipulator.resizeImage(Assets.ARROW_LEFT,75,75), 1,Color.MAGENTA);
+            super(Assets.ARROW_ANIMATION.animationConfigurations.get(15).atlas.get(0).image, 1,Color.MAGENTA);
         }
     }
     public static final class ArrowRight extends PCDOArrow {
         public ArrowRight() {
-            super(GraphicsManipulator.resizeImage(Assets.ARROW_RIGHT,75,75), 4,Color.RED);
+            super(Assets.ARROW_ANIMATION.animationConfigurations.get(17).atlas.get(0).image, 4,Color.RED);
         }
     }
 }

@@ -14,6 +14,9 @@ public final class WindowManager {
         actualPanel = panel;
         lastPanel = panel;
         frame.add(lastPanel);
+        frame.invalidate();
+        frame.validate();
+        frame.repaint();
     }
 
     public static int getWidth(){
