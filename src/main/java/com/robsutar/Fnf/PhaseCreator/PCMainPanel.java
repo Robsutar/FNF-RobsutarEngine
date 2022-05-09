@@ -114,6 +114,11 @@ public class PCMainPanel extends RenderablePanel implements Ticable , KeyboardIn
         spawnAll();
     }
 
+    @Override
+    public void onOpen() {
+
+    }
+
     public void update(){
         revalidate();
         repaint();

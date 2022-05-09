@@ -2,7 +2,6 @@ package com.robsutar.Engine.Audio;
 
 import com.robsutar.Engine.Handler;
 import com.robsutar.Engine.Helpers.SystemPrinter;
-import com.robsutar.Engine.Threads.PausableThread;
 
 import javax.sound.sampled.Clip;
 import javax.swing.plaf.synth.SynthTableHeaderUI;
@@ -13,9 +12,8 @@ import java.util.concurrent.TimeUnit;
 public class Music {
     Clip audio;
 
-    private double bpm = 60;
-
-    public int compass = 4;
+    @Deprecated
+    public int compass = 0;
 
     public Music(Clip wav){
         audio = wav;
@@ -34,6 +32,11 @@ public class Music {
          */
     }
 
+    @Deprecated
+    public double getBpm(){return 0d;}
+    @Deprecated
+    public void setBpm(double bpm){}
+
     public void play(){
         audio.start();
     }
@@ -45,14 +48,6 @@ public class Music {
     public void pauseOrStart(){
         if (audio.isActive()){pause();}
         else {play();}
-    }
-
-    public void setBpm(double b){
-        bpm = b;
-    }
-
-    public double getBpm(){
-        return bpm;
     }
 
     /*

@@ -28,7 +28,7 @@ public class AnimationFileHook {
         String folder = jsonFile.getParent()+"\\";
         construct(FileManager.loadXml(FileManager.loadFile(folder+json.get("xml"))),
                 FileManager.loadImage(FileManager.loadFile(folder+json.get("image"))));
-        setJson(FileManager.loadJson(jsonFile));
+        setJson(json);
     }
 
     private void construct(Document xml,BufferedImage image) {

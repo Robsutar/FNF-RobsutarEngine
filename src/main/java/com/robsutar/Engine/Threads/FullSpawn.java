@@ -14,6 +14,9 @@ public interface FullSpawn {
         if (this instanceof  BpmTicable){
             ((BpmTicable) this).SpawnBpm();
         }
+        if (this instanceof  SimpleThread){
+            ((SimpleThread) this).SpawnThread();
+        }
     }
     default void killAll(){
         if (this instanceof  Ticable){
@@ -27,6 +30,9 @@ public interface FullSpawn {
         }
         if (this instanceof  BpmTicable){
             ((BpmTicable) this).KillBpm();
+        }
+        if (this instanceof  SimpleThread){
+            ((SimpleThread) this).KillThread();
         }
     }
 }

@@ -2,15 +2,15 @@ package com.robsutar.Engine;
 
 import com.robsutar.Engine.Helpers.GraphicsManipulator;
 import com.robsutar.Engine.Helpers.KeyManager;
-import com.robsutar.Engine.Threads.BpmTicable;
-import com.robsutar.Engine.Threads.KeyboardInteractive;
-import com.robsutar.Engine.Threads.Renderable;
-import com.robsutar.Engine.Threads.Ticable;
+import com.robsutar.Engine.Helpers.PauseableThread;
+import com.robsutar.Engine.Threads.*;
 import com.robsutar.Engine.Ultilities.ActionStatic;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public final class Handler {
@@ -31,6 +31,22 @@ public final class Handler {
     public static void addObject(KeyboardInteractive o) {IKeyboardInteractives.add(o);}
     public static void removeObject(KeyboardInteractive o) {IKeyboardInteractives.remove(o);}
 
+    public static List<SimpleThread> ISimpleThreads = new ArrayList<>();
+    public static void addObject(SimpleThread o) {ISimpleThreads.add(o);}
+    public static void removeObject(SimpleThread o) {ISimpleThreads.remove(o);}
+
+    public static void dispose() {
+        List<FullSpawn> fullSpawns = new ArrayList<>();
+        fullSpawns.addAll(ITicables);
+        fullSpawns.addAll(IRenderables);
+        fullSpawns.addAll(IBpmTicables);
+        fullSpawns.addAll(IKeyboardInteractives);
+        fullSpawns.addAll(ISimpleThreads);
+        for(FullSpawn f:fullSpawns){
+            f.killAll();
+        }
+    }
+
     public static void tick(){
         List<Ticable> Ticables = new ArrayList<>(ITicables);
         for(Ticable i: Ticables){
@@ -39,14 +55,15 @@ public final class Handler {
     }
 
     public static void render(Graphics2D g2d){
+        AffineTransform at = g2d.getTransform();
         List<Renderable> Renderables = new ArrayList<>(IRenderables);
 
-        GraphicsManipulator.resetGraphics(g2d);
+        GraphicsManipulator.resetGraphics(g2d,at);
         for(Renderable i: Renderables){
             i.render(g2d);
-            GraphicsManipulator.resetGraphics(g2d);
+            GraphicsManipulator.resetGraphics(g2d,at);
         }
-        GraphicsManipulator.resetGraphics(g2d);
+        GraphicsManipulator.resetGraphics(g2d,at);
     }
 
     public static void bpmTick(long age){

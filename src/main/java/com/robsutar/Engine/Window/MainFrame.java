@@ -23,13 +23,14 @@ public class MainFrame extends JFrame implements KeyListener {
 
     public MainFrame(){
         //configs
-        Dimension dim = new Dimension(1280,720);
+        Dimension dim = new Dimension(1280,760);
 
         setTitle("FNF Robsutar Engine");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setFocusable(true);
 
+        setMinimumSize(dim);
         setPreferredSize(dim);
         setFocusTraversalKeysEnabled(false);
 
@@ -98,11 +99,13 @@ public class MainFrame extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        WindowManager.keyDown(e);
         Handler.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        WindowManager.keyUp(e);
         Handler.keyReleased(e);
     }
 }

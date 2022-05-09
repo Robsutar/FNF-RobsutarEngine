@@ -15,4 +15,12 @@ public class Lists {
         }
         return null;
     }
+
+    public static <T> T getRotationObject(Collection<T> collection, int index){
+        if (indexInBounds(collection,index)){
+            return ((T) collection.toArray()[index]);
+        }
+        int multiplication = collection.size()/index;
+        return (T) collection.toArray()[index-index*multiplication];
+    }
 }

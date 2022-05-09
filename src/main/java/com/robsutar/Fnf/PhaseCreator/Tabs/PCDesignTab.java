@@ -1,12 +1,11 @@
 package com.robsutar.Fnf.PhaseCreator.Tabs;
 
-import com.formdev.flatlaf.json.Json;
 import com.robsutar.Assets;
 import com.robsutar.Engine.Audio.OnePlayAudio;
 import com.robsutar.Engine.Helpers.*;
 import com.robsutar.Engine.Ultilities.ActionStatic;
 import com.robsutar.Fnf.Animated.AnimatedObject;
-import com.robsutar.Fnf.Animated.Arrows;
+import com.robsutar.Fnf.PhaseCreator.Arrows;
 import com.robsutar.Fnf.AnimationBuilder.Animation;
 import com.robsutar.Fnf.AnimationBuilder.AnimationFileHook;
 import com.robsutar.Fnf.KeyConfiguration;
@@ -18,19 +17,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 public class PCDesignTab extends PCTab {
 
@@ -481,6 +474,29 @@ public class PCDesignTab extends PCTab {
                 }
                 return null;
             }
+            private void mouseDown(MouseEvent e) {
+            }
+
+            private void mouseUp(MouseEvent e){
+                focusPanel=inLeft;
+                if(e.getButton() == MouseEvent.BUTTON3) {
+                    long index = getNearestPit(e.getY());
+                    PhaseObject object = getNearestObject(index,getPanel(e.getX()));
+                    if(object != null) {
+                        removeObject(object);
+                    }
+                }else if (!addObject(getNearestPit(e.getY()),getPanel(e.getX()))){
+                    if (e.getButton()==MouseEvent.BUTTON1){
+                        if (!KeyManager.isKeyPressed(KeyEvent.VK_CONTROL)){
+                            changeAllObjectsSelect(false);
+                        }
+                        PhaseObject o = getObject(getNearestPit(e.getY()),getPanel(e.getX()));
+                        if (o!=null){
+                            o.selected=!o.selected;
+                        }
+                    }
+                }
+            }
 
             private void addObject(PhaseObject object){
                 ActionStatic a = new ActionStatic(e1 -> {
@@ -517,29 +533,6 @@ public class PCDesignTab extends PCTab {
                 return null;
             }
 
-            private void mouseDown(MouseEvent e) {
-            }
-
-            private void mouseUp(MouseEvent e){
-                focusPanel=inLeft;
-                if(e.getButton() == MouseEvent.BUTTON3) {
-                    long index = getNearestPit(e.getY());
-                    PhaseObject object = getNearestObject(index,getPanel(e.getX()));
-                    if(object != null) {
-                        removeObject(object);
-                    }
-                }else if (!addObject(getNearestPit(e.getY()),getPanel(e.getX()))){
-                    if (e.getButton()==MouseEvent.BUTTON1){
-                        if (!KeyManager.isKeyPressed(KeyEvent.VK_CONTROL)){
-                            changeAllObjectsSelect(false);
-                        }
-                        PhaseObject o = getObject(getNearestPit(e.getY()),getPanel(e.getX()));
-                        if (o!=null){
-                            o.selected=!o.selected;
-                        }
-                    }
-                }
-            }
 
             private void changeAllObjectsSelect(boolean selectValue){
                 for(PhaseObject o:objects){

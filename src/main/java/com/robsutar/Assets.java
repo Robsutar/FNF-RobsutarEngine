@@ -5,6 +5,7 @@ import com.robsutar.Engine.Helpers.EngineVisuals;
 import com.robsutar.Engine.Helpers.FileManager;
 import com.robsutar.Fnf.AnimationBuilder.Animation;
 import com.robsutar.Fnf.AnimationBuilder.AnimationFileHook;
+import com.robsutar.Fnf.AnimationLoader.AnimFileHook;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -21,6 +22,7 @@ public class Assets {
     public static ImageIcon MENOS = getIconBy25px("menos.png");
 
     public static AnimationFileHook ARROW_ANIMATION = new AnimationFileHook(FileManager.loadFile(FileManager.mainAssetsPath+"animated\\NOTE_assets.json"));
+    public static AnimFileHook ARROW_ANIM = new AnimFileHook(FileManager.loadFile(FileManager.mainAssetsPath+"animated\\NOTE_assets.json"));
 
     //public static Music DIE = new Music(FileManager.loadWav(FileManager.loadFile(FileManager.audioPath+"Die by Jeff Williams and Casey Lee Williams.wav")));
     //public static Music DRUM_HIT = new Music(FileManager.loadWav(FileManager.loadFile(FileManager.audioPath+"drum-hitnormal.wav")));

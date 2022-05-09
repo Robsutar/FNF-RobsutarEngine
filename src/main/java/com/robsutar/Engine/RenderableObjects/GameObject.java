@@ -1,5 +1,6 @@
 package com.robsutar.Engine.RenderableObjects;
 
+import com.robsutar.Engine.Helpers.SystemPrinter;
 import com.robsutar.Engine.Threads.Ticable;
 
 import java.awt.*;
